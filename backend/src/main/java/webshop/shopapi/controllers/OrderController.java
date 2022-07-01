@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-/**
- * Created By Zhu Lin on 3/14/2018.
- */
+
 @RestController
 @CrossOrigin
 public class OrderController {

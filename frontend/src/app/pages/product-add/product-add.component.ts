@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProductInfo } from 'src/app/models/productInfo';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-add',
@@ -7,9 +10,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductAddComponent implements OnInit {
 
-  constructor() { }
+  product = new ProductInfo();
+
+  constructor(private productService: ProductService,
+    private route: ActivatedRoute,
+    private router: Router) {
+  }
+
+  productId: string;
 
   ngOnInit() {
+
+
+  }
+
+  update() {
+    this.productService.update(this.product).subscribe(prod => {
+      if (!prod) throw new Error();
+      this.router.navigate(['/seller']);
+    },
+      err => {
+      });
+
+  }
+
+  onSubmit() {
+    if (this.productId) {
+      this.add();
+    } 
+  }
+
+  add() {
+    this.productService.create(this.product).subscribe(prod => {
+      if (!prod) throw new Error;
+      this.router.navigate(['/']);
+    },
+      e => {
+      });
+  }
+
+  ngAfterContentChecked(): void {
+    console.log(this.product);
   }
 
 }

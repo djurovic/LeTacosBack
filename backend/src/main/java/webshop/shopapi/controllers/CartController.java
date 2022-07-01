@@ -19,9 +19,7 @@ import java.security.Principal;
 import java.util.Collection;
 import java.util.Collections;
 
-/**
- * Created By Zhu Lin on 3/11/2018.
- */
+
 @CrossOrigin
 @RestController
 @RequestMapping("/cart")

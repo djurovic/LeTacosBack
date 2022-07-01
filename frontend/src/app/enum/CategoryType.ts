@@ -1,3 +1,3 @@
 export enum CategoryType {
-    "Telefoni", "Laptopovi", "Oprema", "Racunari"
+    "Telefoni", "Racunari", "Laptopovi", "Oprema"
 }
