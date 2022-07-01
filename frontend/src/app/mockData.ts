@@ -1,4 +1,4 @@
-import {ProductInfo} from './models/productInfo';
+/* import {ProductInfo} from './models/productInfo';
 
 export const products: ProductInfo[] = [
   {
@@ -86,3 +86,4 @@ export const prod: ProductInfo = {
   updateTime: '2018-03-10T15:35:43.000+0000'
 };
 
+ */

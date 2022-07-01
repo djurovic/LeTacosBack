@@ -1,3 +1,3 @@
 export enum CategoryType {
-    "Books", "Food", "Clothes", "Drink"
+    "Phones", "Laptops", "Equipment", "PC"
 }
