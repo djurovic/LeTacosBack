@@ -1,5 +1,5 @@
 <h1 align="center" class="display-4 ">Products</h1>
-<a *ngIf="currentUser?.role == Role.Customer" style="color: inherit"
+<a  style="color: inherit"
    routerLink="/seller/product/new" class="float-right mb-3"><i class="fas fa-plus fa-2x">Add</i>
 </a>
 <table id="table" class="table table-striped text-center" style="width:100%;">
@@ -31,9 +31,8 @@
         <td class="align-middle">
             <a style="display: block" routerLink="/seller/product/{{productInfo.productId}}/edit">
                 Edit</a>
-
-            <a *ngIf="currentUser?.role == Role.Customer" style="display: block"
-               (click)="remove(page.content, productInfo.productId)" routerLink="./">
+            <a style="display: block"
+               (click)="remove(page.content, productInfo)" routerLink="./">
                 Remove</a>
         </td>
 
