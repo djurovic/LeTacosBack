@@ -24,18 +24,11 @@ export class ProductAddComponent implements OnInit {
 
   }
 
-  update() {
-    this.productService.update(this.product).subscribe(prod => {
-      if (!prod) throw new Error();
-      this.router.navigate(['/seller']);
-    },
-      err => {
-      });
-
-  }
+  
 
   onSubmit() {
-    if (this.productId) {
+    if (this.product) {
+      console.log(this.product + "FInal");      
       this.add();
     } 
   }
@@ -50,7 +43,7 @@ export class ProductAddComponent implements OnInit {
   }
 
   ngAfterContentChecked(): void {
-    console.log(this.product);
+    //console.log(this.product);
   }
 
 }
