@@ -1,4 +1,4 @@
-package me.zhulin.shopapi.security.JWT;
+package webshop.shopapi.security.JWT;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,20 +1,18 @@
-package me.zhulin.shopapi.service.impl;
+package webshop.shopapi.service.impl;
 
 
-import me.zhulin.shopapi.entity.ProductCategory;
-import me.zhulin.shopapi.enums.ResultEnum;
-import me.zhulin.shopapi.exception.MyException;
-import me.zhulin.shopapi.repository.ProductCategoryRepository;
-import me.zhulin.shopapi.service.CategoryService;
+import webshop.shopapi.entity.ProductCategory;
+import webshop.shopapi.enums.ResultEnum;
+import webshop.shopapi.exception.MyException;
+import webshop.shopapi.repository.ProductCategoryRepository;
+import webshop.shopapi.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created By Zhu Lin on 3/10/2018.
- */
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
     @Autowired

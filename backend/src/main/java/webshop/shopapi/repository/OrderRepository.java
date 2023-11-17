@@ -1,14 +1,12 @@
-package me.zhulin.shopapi.repository;
+package webshop.shopapi.repository;
 
 
-import me.zhulin.shopapi.entity.OrderMain;
+import webshop.shopapi.entity.OrderMain;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- * Created By Zhu Lin on 3/14/2018.
- */
+
 public interface OrderRepository extends JpaRepository<OrderMain, Integer> {
     OrderMain findByOrderId(Long orderId);
 

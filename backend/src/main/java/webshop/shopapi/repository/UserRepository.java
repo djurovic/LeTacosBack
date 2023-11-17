@@ -1,7 +1,7 @@
-package me.zhulin.shopapi.repository;
+package webshop.shopapi.repository;
 
 
-import me.zhulin.shopapi.entity.User;
+import webshop.shopapi.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Collection;

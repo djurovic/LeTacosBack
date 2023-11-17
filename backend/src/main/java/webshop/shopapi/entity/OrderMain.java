@@ -1,5 +1,6 @@
-package me.zhulin.shopapi.entity;
+package webshop.shopapi.entity;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
@@ -8,8 +9,8 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.NotEmpty;
+//import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -33,21 +34,38 @@ public class OrderMain implements Serializable {
             mappedBy = "orderMain")
     private Set<ProductInOrder> products = new HashSet<>();
 
-    @NotEmpty
+    @NotNull
     private String buyerEmail;
 
-    @NotEmpty
+    @NotNull
     private String buyerName;
 
-    @NotEmpty
+    @NotNull
+    private String buyerSurname;
+
+    @NotNull
     private String buyerPhone;
 
-    @NotEmpty
-    private String buyerAddress;
+    @NotNull
+    private String buyerUlica;
+
+    @NotNull
+    private String buyerBroj;
+
+    @NotNull
+    private String buyerInterfon;
+
+    @NotNull
+    private String buyerBrojStana;
+
+    @NotNull
+    private String buyerSprat;
 
     // Total Amount
     @NotNull
     private BigDecimal orderAmount;
+
+    private String vreme;
 
     /**
      * default 0: new order.
@@ -65,11 +83,17 @@ public class OrderMain implements Serializable {
     public OrderMain(User buyer) {
         this.buyerEmail = buyer.getEmail();
         this.buyerName = buyer.getName();
+        this.buyerSurname = buyer.getSurname();
         this.buyerPhone = buyer.getPhone();
-        this.buyerAddress = buyer.getAddress();
-        this.orderAmount = buyer.getCart().getProducts().stream().map(item -> item.getProductPrice().multiply(new BigDecimal(item.getCount())))
+        this.buyerUlica = buyer.getUlica();
+        this.buyerBroj = buyer.getBroj();
+        this.buyerInterfon = buyer.getInterfon();
+        this.buyerBrojStana = buyer.getBrojStana();
+        this.buyerSprat = buyer.getSprat();
+        /*this.orderAmount = buyer.getCart().getProducts().stream().map(item -> item.getSubTotal().multiply(new BigDecimal(item.getCount())))
                 .reduce(BigDecimal::add)
-                .orElse(new BigDecimal(0));
+                .orElse(new BigDecimal(0));*/
+        this.orderAmount =  buyer.getCart().getProducts().stream().map(item -> item.getSubTotal()).reduce(BigDecimal::add).orElse(new BigDecimal(0));
         this.orderStatus = 0;
 
     }

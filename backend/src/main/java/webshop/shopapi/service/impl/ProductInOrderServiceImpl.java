@@ -1,18 +1,16 @@
-package me.zhulin.shopapi.service.impl;
+package webshop.shopapi.service.impl;
 
-import me.zhulin.shopapi.entity.ProductInOrder;
-import me.zhulin.shopapi.entity.User;
-import me.zhulin.shopapi.repository.ProductInOrderRepository;
-import me.zhulin.shopapi.service.ProductInOrderService;
+import webshop.shopapi.entity.ProductInOrder;
+import webshop.shopapi.entity.User;
+import webshop.shopapi.repository.ProductInOrderRepository;
+import webshop.shopapi.service.ProductInOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-/**
- * Created By Zhu Lin on 1/3/2019.
- */
+
 @Service
 public class ProductInOrderServiceImpl implements ProductInOrderService {
 

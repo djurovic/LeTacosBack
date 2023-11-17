@@ -1,8 +1,9 @@
-package me.zhulin.shopapi.api;
+package webshop.shopapi.controllers;
 
-import me.zhulin.shopapi.entity.ProductInfo;
-import me.zhulin.shopapi.service.CategoryService;
-import me.zhulin.shopapi.service.ProductService;
+import org.springframework.validation.annotation.Validated;
+import webshop.shopapi.entity.ProductInfo;
+import webshop.shopapi.service.CategoryService;
+import webshop.shopapi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+//import javax.validation.Valid;
 
 
 @CrossOrigin
@@ -27,7 +28,7 @@ public class ProductController {
 
     @GetMapping("/product")
     public Page<ProductInfo> findAll(@RequestParam(value = "page", defaultValue = "1") Integer page,
-                                     @RequestParam(value = "size", defaultValue = "3") Integer size) {
+                                     @RequestParam(value = "size", defaultValue = "999") Integer size) {
         PageRequest request = PageRequest.of(page - 1, size);
         return productService.findAll(request);
     }
@@ -46,7 +47,7 @@ public class ProductController {
     }
 
     @PostMapping("/seller/product/new")
-    public ResponseEntity create(@Valid @RequestBody ProductInfo product,
+    public ResponseEntity create(@Validated @RequestBody ProductInfo product,
                                  BindingResult bindingResult) {
         ProductInfo productIdExists = productService.findOne(product.getProductId());
         if (productIdExists != null) {
@@ -62,7 +63,7 @@ public class ProductController {
 
     @PutMapping("/seller/product/{id}/edit")
     public ResponseEntity edit(@PathVariable("id") String productId,
-                               @Valid @RequestBody ProductInfo product,
+                               @Validated @RequestBody ProductInfo product,
                                BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body(bindingResult);

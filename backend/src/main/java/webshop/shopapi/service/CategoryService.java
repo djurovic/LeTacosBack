@@ -1,12 +1,10 @@
-package me.zhulin.shopapi.service;
+package webshop.shopapi.service;
 
-import me.zhulin.shopapi.entity.ProductCategory;
+import webshop.shopapi.entity.ProductCategory;
 
 import java.util.List;
 
-/**
- * Created By Zhu Lin on 3/10/2018.
- */
+
 public interface CategoryService {
 
     List<ProductCategory> findAll();

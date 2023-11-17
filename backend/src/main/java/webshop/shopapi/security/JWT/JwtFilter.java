@@ -1,7 +1,7 @@
-package me.zhulin.shopapi.security.JWT;
+package webshop.shopapi.security.JWT;
 
-import me.zhulin.shopapi.entity.User;
-import me.zhulin.shopapi.service.UserService;
+import webshop.shopapi.entity.User;
+import webshop.shopapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,13 +1,13 @@
-package me.zhulin.shopapi.service.impl;
+package webshop.shopapi.service.impl;
 
 
-import me.zhulin.shopapi.entity.Cart;
-import me.zhulin.shopapi.entity.User;
-import me.zhulin.shopapi.enums.ResultEnum;
-import me.zhulin.shopapi.exception.MyException;
-import me.zhulin.shopapi.repository.CartRepository;
-import me.zhulin.shopapi.repository.UserRepository;
-import me.zhulin.shopapi.service.UserService;
+import webshop.shopapi.entity.Cart;
+import webshop.shopapi.entity.User;
+import webshop.shopapi.enums.ResultEnum;
+import webshop.shopapi.exception.MyException;
+import webshop.shopapi.repository.CartRepository;
+import webshop.shopapi.repository.UserRepository;
+import webshop.shopapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,9 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
-/**
- * Created By Zhu Lin on 3/13/2018.
- */
+
 @Service
 @DependsOn("passwordEncoder")
 public class UserServiceImpl implements UserService {
@@ -28,6 +26,9 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
     @Autowired
     CartRepository cartRepository;
+
+    @Autowired
+    private EmailService emailService;
 
     @Override
     public User findOne(String email) {
@@ -50,6 +51,8 @@ public class UserServiceImpl implements UserService {
             // initial Cart
             Cart savedCart = cartRepository.save(new Cart(savedUser));
             savedUser.setCart(savedCart);
+
+            emailService.sendEmail(user.getEmail(), "Uspesna registracija", "Hvala Vam sto ste se registrovali");
             return userRepository.save(savedUser);
 
         } catch (Exception e) {
@@ -64,8 +67,14 @@ public class UserServiceImpl implements UserService {
         User oldUser = userRepository.findByEmail(user.getEmail());
         oldUser.setPassword(passwordEncoder.encode(user.getPassword()));
         oldUser.setName(user.getName());
+        oldUser.setSurname(user.getSurname());
+        oldUser.setUlica(user.getUlica());
+        oldUser.setBroj(user.getBroj());
+        oldUser.setBrojStana(user.getBrojStana());
+        oldUser.setSprat((user.getSprat()));
+        oldUser.setInterfon(user.getInterfon());
         oldUser.setPhone(user.getPhone());
-        oldUser.setAddress(user.getAddress());
+
         return userRepository.save(oldUser);
     }
 

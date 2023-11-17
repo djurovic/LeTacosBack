@@ -1,4 +1,4 @@
-package me.zhulin.shopapi.enums;
+package webshop.shopapi.enums;
 
 import lombok.Getter;
 

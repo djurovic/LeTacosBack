@@ -1,11 +1,11 @@
-package me.zhulin.shopapi.entity;
+package webshop.shopapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class Cart implements Serializable {
     @Id
-    @NotNull
+    //@NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long cartId;
 

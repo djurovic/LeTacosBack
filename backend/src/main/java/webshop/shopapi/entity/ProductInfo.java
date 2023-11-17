@@ -1,5 +1,6 @@
-package me.zhulin.shopapi.entity;
+package webshop.shopapi.entity;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,8 +9,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.Min;
+//import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -28,11 +29,11 @@ public class ProductInfo implements Serializable {
     @NotNull
     private BigDecimal productPrice;
 
-    @NotNull
+    /*@NotNull
     @Min(0)
-    private Integer productStock;
+    private Integer productStock;*/
 
-    private String productDescription;
+    //private String productDescription;
 
     private String productIcon;
 

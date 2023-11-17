@@ -1,11 +1,9 @@
-package me.zhulin.shopapi.vo.response;
+package webshop.shopapi.vo.response;
 
-import me.zhulin.shopapi.entity.ProductInfo;
+import webshop.shopapi.entity.ProductInfo;
 import org.springframework.data.domain.Page;
 
-/**
- * Created By Zhu Lin on 12/28/2018.
- */
+
 public class CategoryPage {
     private String category;
     private Page<ProductInfo> page;

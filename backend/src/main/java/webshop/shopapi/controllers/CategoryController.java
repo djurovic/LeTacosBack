@@ -1,11 +1,11 @@
-package me.zhulin.shopapi.api;
+package webshop.shopapi.controllers;
 
 
-import me.zhulin.shopapi.entity.ProductCategory;
-import me.zhulin.shopapi.entity.ProductInfo;
-import me.zhulin.shopapi.service.CategoryService;
-import me.zhulin.shopapi.service.ProductService;
-import me.zhulin.shopapi.vo.response.CategoryPage;
+import webshop.shopapi.entity.ProductCategory;
+import webshop.shopapi.entity.ProductInfo;
+import webshop.shopapi.service.CategoryService;
+import webshop.shopapi.service.ProductService;
+import webshop.shopapi.vo.response.CategoryPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,7 +32,7 @@ public class CategoryController {
     @GetMapping("/category/{type}")
     public CategoryPage showOne(@PathVariable("type") Integer categoryType,
                                 @RequestParam(value = "page", defaultValue = "1") Integer page,
-                                @RequestParam(value = "size", defaultValue = "3") Integer size) {
+                                @RequestParam(value = "size", defaultValue = "99") Integer size) {
 
         ProductCategory cat = categoryService.findByCategoryType(categoryType);
         PageRequest request = PageRequest.of(page - 1, size);

@@ -1,11 +1,9 @@
-package me.zhulin.shopapi.service;
+package webshop.shopapi.service;
 
-import me.zhulin.shopapi.entity.ProductInOrder;
-import me.zhulin.shopapi.entity.User;
+import webshop.shopapi.entity.ProductInOrder;
+import webshop.shopapi.entity.User;
 
-/**
- * Created By Zhu Lin on 1/3/2019.
- */
+
 public interface ProductInOrderService {
     void update(String itemId, Integer quantity, User user);
     ProductInOrder findOne(String itemId, User user);

@@ -1,4 +1,4 @@
-package me.zhulin.shopapi.vo.response;
+package webshop.shopapi.vo.response;
 
 import lombok.Data;
 

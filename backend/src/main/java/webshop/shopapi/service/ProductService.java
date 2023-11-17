@@ -1,13 +1,11 @@
-package me.zhulin.shopapi.service;
+package webshop.shopapi.service;
 
 
-import me.zhulin.shopapi.entity.ProductInfo;
+import webshop.shopapi.entity.ProductInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-/**
- * Created By Zhu Lin on 3/10/2018.
- */
+
 public interface ProductService {
 
     ProductInfo findOne(String productId);
@@ -19,12 +17,12 @@ public interface ProductService {
     // All products in a category
     Page<ProductInfo> findAllInCategory(Integer categoryType, Pageable pageable);
 
-    // increase stock
+   /* // increase stock
     void increaseStock(String productId, int amount);
 
     //decrease stock
     void decreaseStock(String productId, int amount);
-
+*/
     ProductInfo offSale(String productId);
 
     ProductInfo onSale(String productId);

@@ -1,4 +1,4 @@
-package me.zhulin.shopapi.security.JWT;
+package webshop.shopapi.security.JWT;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

@@ -1,17 +1,17 @@
-package me.zhulin.shopapi.service.impl;
+package webshop.shopapi.service.impl;
 
 
-import me.zhulin.shopapi.entity.Cart;
-import me.zhulin.shopapi.entity.OrderMain;
-import me.zhulin.shopapi.entity.ProductInOrder;
-import me.zhulin.shopapi.entity.User;
-import me.zhulin.shopapi.repository.CartRepository;
-import me.zhulin.shopapi.repository.OrderRepository;
-import me.zhulin.shopapi.repository.ProductInOrderRepository;
-import me.zhulin.shopapi.repository.UserRepository;
-import me.zhulin.shopapi.service.CartService;
-import me.zhulin.shopapi.service.ProductService;
-import me.zhulin.shopapi.service.UserService;
+import webshop.shopapi.entity.Cart;
+import webshop.shopapi.entity.OrderMain;
+import webshop.shopapi.entity.ProductInOrder;
+import webshop.shopapi.entity.User;
+import webshop.shopapi.repository.CartRepository;
+import webshop.shopapi.repository.OrderRepository;
+import webshop.shopapi.repository.ProductInOrderRepository;
+import webshop.shopapi.repository.UserRepository;
+import webshop.shopapi.service.CartService;
+import webshop.shopapi.service.ProductService;
+import webshop.shopapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,9 +20,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
-/**
- * Created By Zhu Lin on 3/11/2018.
- */
+
 @Service
 public class CartServiceImpl implements CartService {
     @Autowired
@@ -89,7 +87,7 @@ public class CartServiceImpl implements CartService {
         user.getCart().getProducts().forEach(productInOrder -> {
             productInOrder.setCart(null);
             productInOrder.setOrderMain(order);
-            productService.decreaseStock(productInOrder.getProductId(), productInOrder.getCount());
+            //productService.decreaseStock(productInOrder.getProductId(), productInOrder.getCount());
             productInOrderRepository.save(productInOrder);
         });
 

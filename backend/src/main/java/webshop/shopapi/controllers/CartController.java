@@ -1,15 +1,15 @@
-package me.zhulin.shopapi.api;
+package webshop.shopapi.controllers;
 
 
-import me.zhulin.shopapi.entity.Cart;
-import me.zhulin.shopapi.entity.ProductInOrder;
-import me.zhulin.shopapi.entity.User;
-import me.zhulin.shopapi.form.ItemForm;
-import me.zhulin.shopapi.repository.ProductInOrderRepository;
-import me.zhulin.shopapi.service.CartService;
-import me.zhulin.shopapi.service.ProductInOrderService;
-import me.zhulin.shopapi.service.ProductService;
-import me.zhulin.shopapi.service.UserService;
+import webshop.shopapi.entity.Cart;
+import webshop.shopapi.entity.ProductInOrder;
+import webshop.shopapi.entity.User;
+import webshop.shopapi.form.ItemForm;
+import webshop.shopapi.repository.ProductInOrderRepository;
+import webshop.shopapi.service.CartService;
+import webshop.shopapi.service.ProductInOrderService;
+import webshop.shopapi.service.ProductService;
+import webshop.shopapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,7 +57,16 @@ public class CartController {
     public boolean addToCart(@RequestBody ItemForm form, Principal principal) {
         var productInfo = productService.findOne(form.getProductId());
         try {
-            mergeCart(Collections.singleton(new ProductInOrder(productInfo, form.getQuantity())), principal);
+            mergeCart(Collections.singleton(new ProductInOrder(productInfo, form.getQuantity(),
+                    form.getMariniranaPiletina(),form.getMlevenaJunetina(), form.getRostiljKobasica(),
+                    form.getChickenNugets(),form.getCordonBleu(),form.getFalafel(),
+                    form.getTostSir(),form.getCedar(),form.getZdenka(),form.getGauda(),form.getSampinjoni(),
+                    form.getGorgonzola(),form.getSlanina(),form.getJalapeno(),
+                    form.getHrskaviLuk(),form.getGuacamole(), form.getBesplatniSos(),
+                    form.getKecap(),form.getMajonez(),form.getSahara(),
+                    form.getSeville(),form.getTexasBbq(),form.getNinjaBlend(),
+                    form.getKari(),form.getSiracha(),form.getBarbecue(),form.getPosebanZahtev(),
+                    form.getSubTotal())), principal);
         } catch (Exception e) {
             return false;
         }

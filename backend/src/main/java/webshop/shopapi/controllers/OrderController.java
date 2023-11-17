@@ -1,10 +1,10 @@
-package me.zhulin.shopapi.api;
+package webshop.shopapi.controllers;
 
 
-import me.zhulin.shopapi.entity.OrderMain;
-import me.zhulin.shopapi.entity.ProductInOrder;
-import me.zhulin.shopapi.service.OrderService;
-import me.zhulin.shopapi.service.UserService;
+import webshop.shopapi.entity.OrderMain;
+import webshop.shopapi.entity.ProductInOrder;
+import webshop.shopapi.service.OrderService;
+import webshop.shopapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import java.util.Collection;
 
 
@@ -51,11 +52,11 @@ public class OrderController {
     }
 
     @PatchMapping("/order/finish/{id}")
-    public ResponseEntity<OrderMain> finish(@PathVariable("id") Long orderId, Authentication authentication) {
+    public ResponseEntity<OrderMain> finish(@PathVariable("id") Long orderId, Authentication authentication, @RequestBody String vreme) throws MessagingException {
         if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_CUSTOMER"))) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        return ResponseEntity.ok(orderService.finish(orderId));
+        return ResponseEntity.ok(orderService.finish(orderId, vreme));
     }
 
     @GetMapping("/order/{id}")

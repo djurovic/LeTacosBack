@@ -1,22 +1,20 @@
-package me.zhulin.shopapi.service.impl;
+package webshop.shopapi.service.impl;
 
 
-import me.zhulin.shopapi.entity.ProductInfo;
-import me.zhulin.shopapi.enums.ProductStatusEnum;
-import me.zhulin.shopapi.enums.ResultEnum;
-import me.zhulin.shopapi.exception.MyException;
-import me.zhulin.shopapi.repository.ProductInfoRepository;
-import me.zhulin.shopapi.service.CategoryService;
-import me.zhulin.shopapi.service.ProductService;
+import webshop.shopapi.entity.ProductInfo;
+import webshop.shopapi.enums.ProductStatusEnum;
+import webshop.shopapi.enums.ResultEnum;
+import webshop.shopapi.exception.MyException;
+import webshop.shopapi.repository.ProductInfoRepository;
+import webshop.shopapi.service.CategoryService;
+import webshop.shopapi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Created By Zhu Lin on 3/10/2018.
- */
+
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -48,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
         return productInfoRepository.findAllByCategoryTypeOrderByProductIdAsc(categoryType, pageable);
     }
 
-    @Override
+    /*@Override
     @Transactional
     public void increaseStock(String productId, int amount) {
         ProductInfo productInfo = findOne(productId);
@@ -70,7 +68,7 @@ public class ProductServiceImpl implements ProductService {
 
         productInfo.setProductStock(update);
         productInfoRepository.save(productInfo);
-    }
+    }*/
 
     @Override
     @Transactional

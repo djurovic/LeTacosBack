@@ -1,4 +1,4 @@
-package me.zhulin.shopapi.entity;
+package webshop.shopapi.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;

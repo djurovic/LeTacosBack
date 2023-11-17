@@ -1,7 +1,7 @@
-package me.zhulin.shopapi.exception;
+package webshop.shopapi.exception;
 
 
-import me.zhulin.shopapi.enums.ResultEnum;
+import webshop.shopapi.enums.ResultEnum;
 
 /**
  * Created By Zhu Lin on 3/10/2018.

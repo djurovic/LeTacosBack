@@ -1,12 +1,10 @@
-package me.zhulin.shopapi.enums;
+package webshop.shopapi.enums;
 
-/**
- * Created By Zhu Lin on 3/14/2018.
- */
+
 public enum OrderStatusEnum implements CodeEnum {
-    NEW(0, "New OrderMain"),
-    FINISHED(1, "Finished"),
-    CANCELED(2, "Canceled")
+    CEKA_POTVRDU(0, "New OrderMain"),
+    POTVRDJENO(1, "Finished"),
+    ODBIJENO(2, "Canceled")
     ;
 
     private  int code;

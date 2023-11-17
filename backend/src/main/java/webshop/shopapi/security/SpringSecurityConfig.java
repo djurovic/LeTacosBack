@@ -1,7 +1,7 @@
-package me.zhulin.shopapi.security;
+package webshop.shopapi.security;
 
-import me.zhulin.shopapi.security.JWT.JwtEntryPoint;
-import me.zhulin.shopapi.security.JWT.JwtFilter;
+import webshop.shopapi.security.JWT.JwtEntryPoint;
+import webshop.shopapi.security.JWT.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;

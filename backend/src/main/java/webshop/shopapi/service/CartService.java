@@ -1,14 +1,12 @@
-package me.zhulin.shopapi.service;
+package webshop.shopapi.service;
 
-import me.zhulin.shopapi.entity.Cart;
-import me.zhulin.shopapi.entity.ProductInOrder;
-import me.zhulin.shopapi.entity.User;
+import webshop.shopapi.entity.Cart;
+import webshop.shopapi.entity.ProductInOrder;
+import webshop.shopapi.entity.User;
 
 import java.util.Collection;
 
-/**
- * Created By Zhu Lin on 3/10/2018.
- */
+
 public interface CartService {
     Cart getCart(User user);
 

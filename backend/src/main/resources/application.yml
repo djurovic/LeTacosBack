@@ -5,20 +5,29 @@ spring:
     username: postgres
     password: root
     url: jdbc:postgresql://localhost/postgres
-    platform: postgres
-    initialization-mode: always
-    continue-on-error: true
   jpa:
     show-sql: false
 #    generate-ddl: false
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database: postgresql
     properties:
       hibernate:
         temp:
           use_jdbc_metadata_defaults: false;
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: taconovisad@gmail.com
+    password: spgr nlaw qind ptmw
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
   #      dialect: org.hibernate.dialect.MySQL5Dialect
 
 #  jackson:
@@ -35,9 +44,18 @@ spring:
   queries:
     users-query: select email, password, active from users where email=?
     roles-query: select email, role from users where email=?
+  sql:
+    init:
+      continue-on-error: true
+      mode: always
+      platform: postgres
 server:
   servlet:
     contextPath: /api
+  port: 8080
 
 jwtSecret: me.zhulin
 jwtExpiration: 86400
+
+
+

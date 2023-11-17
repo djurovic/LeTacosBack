@@ -1,27 +1,27 @@
-package me.zhulin.shopapi.service.impl;
+package webshop.shopapi.service.impl;
 
 
-import me.zhulin.shopapi.entity.OrderMain;
-import me.zhulin.shopapi.entity.ProductInOrder;
-import me.zhulin.shopapi.entity.ProductInfo;
-import me.zhulin.shopapi.enums.OrderStatusEnum;
-import me.zhulin.shopapi.enums.ResultEnum;
-import me.zhulin.shopapi.exception.MyException;
-import me.zhulin.shopapi.repository.OrderRepository;
-import me.zhulin.shopapi.repository.ProductInOrderRepository;
-import me.zhulin.shopapi.repository.ProductInfoRepository;
-import me.zhulin.shopapi.repository.UserRepository;
-import me.zhulin.shopapi.service.OrderService;
-import me.zhulin.shopapi.service.ProductService;
+import webshop.shopapi.entity.OrderMain;
+import webshop.shopapi.entity.ProductInOrder;
+import webshop.shopapi.entity.ProductInfo;
+import webshop.shopapi.enums.OrderStatusEnum;
+import webshop.shopapi.enums.ResultEnum;
+import webshop.shopapi.exception.MyException;
+import webshop.shopapi.repository.OrderRepository;
+import webshop.shopapi.repository.ProductInOrderRepository;
+import webshop.shopapi.repository.ProductInfoRepository;
+import webshop.shopapi.repository.UserRepository;
+import webshop.shopapi.service.OrderService;
+import webshop.shopapi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Created By Zhu Lin on 3/14/2018.
- */
+import javax.mail.MessagingException;
+
+
 @Service
 public class OrderServiceImpl implements OrderService {
     @Autowired
@@ -34,6 +34,8 @@ public class OrderServiceImpl implements OrderService {
     ProductService productService;
     @Autowired
     ProductInOrderRepository productInOrderRepository;
+    @Autowired
+    EmailService emailService;
 
     @Override
     public Page<OrderMain> findAll(Pageable pageable) {
@@ -66,13 +68,16 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public OrderMain finish(Long orderId) {
+    public OrderMain finish(Long orderId, String vreme) throws MessagingException {
         OrderMain orderMain = findOne(orderId);
-        if(!orderMain.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {
+        if(!orderMain.getOrderStatus().equals(OrderStatusEnum.CEKA_POTVRDU.getCode())) {
             throw new MyException(ResultEnum.ORDER_STATUS_ERROR);
         }
 
-        orderMain.setOrderStatus(OrderStatusEnum.FINISHED.getCode());
+        orderMain.setOrderStatus(OrderStatusEnum.POTVRDJENO.getCode());
+        orderMain.setVreme(vreme);
+
+        emailService.sendEmail(orderMain.getBuyerEmail(), "Order finshed", "Finish: za" + orderMain.getVreme() + " Vam stize porudzbina");
         orderRepository.save(orderMain);
         return orderRepository.findByOrderId(orderId);
     }
@@ -81,20 +86,20 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public OrderMain cancel(Long orderId) {
         OrderMain orderMain = findOne(orderId);
-        if(!orderMain.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {
+        if(!orderMain.getOrderStatus().equals(OrderStatusEnum.CEKA_POTVRDU.getCode())) {
             throw new MyException(ResultEnum.ORDER_STATUS_ERROR);
         }
 
-        orderMain.setOrderStatus(OrderStatusEnum.CANCELED.getCode());
+        orderMain.setOrderStatus(OrderStatusEnum.ODBIJENO.getCode());
         orderRepository.save(orderMain);
 
         // Restore Stock
         Iterable<ProductInOrder> products = orderMain.getProducts();
         for(ProductInOrder productInOrder : products) {
             ProductInfo productInfo = productInfoRepository.findByProductId(productInOrder.getProductId());
-            if(productInfo != null) {
+            /*if(productInfo != null) {
                 productService.increaseStock(productInOrder.getProductId(), productInOrder.getCount());
-            }
+            }*/
         }
         return orderRepository.findByOrderId(orderId);
 

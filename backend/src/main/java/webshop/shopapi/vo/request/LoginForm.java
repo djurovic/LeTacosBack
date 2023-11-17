@@ -1,17 +1,18 @@
-package me.zhulin.shopapi.vo.request;
+package webshop.shopapi.vo.request;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+/*import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;*/
 
 /**
  * Created By Zhu Lin on 1/1/2019.
  */
 @Data
 public class LoginForm {
-    @NotBlank
+    @NotNull
     private String username;
-    @NotBlank
+    @NotNull
     private String password;
 }

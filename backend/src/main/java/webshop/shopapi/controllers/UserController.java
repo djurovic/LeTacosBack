@@ -1,10 +1,10 @@
-package me.zhulin.shopapi.api;
+package webshop.shopapi.controllers;
 
-import me.zhulin.shopapi.entity.User;
-import me.zhulin.shopapi.security.JWT.JwtProvider;
-import me.zhulin.shopapi.service.UserService;
-import me.zhulin.shopapi.vo.request.LoginForm;
-import me.zhulin.shopapi.vo.response.JwtResponse;
+import webshop.shopapi.entity.User;
+import webshop.shopapi.security.JWT.JwtProvider;
+import webshop.shopapi.service.UserService;
+import webshop.shopapi.vo.request.LoginForm;
+import webshop.shopapi.vo.response.JwtResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
